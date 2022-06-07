@@ -1,12 +1,8 @@
 <%@page import="java.util.List"%>
-<%@page import="DAO.UserExhibitionDAO"%>
-<%@page import="VO.ExhibitionVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="DAO.UserMainDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	%>
-	<jsp:useBean id="DAO" class="DAO.UserMainDAO"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +13,7 @@
 
 <meta charset="UTF-8" />
 <!-- CSS Files -->
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="http://localhost/sist/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <link href="fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
 	rel="stylesheet">

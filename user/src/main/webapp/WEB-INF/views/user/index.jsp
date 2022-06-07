@@ -15,15 +15,15 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta charset="UTF-8" />
 <!-- CSS Files -->
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="/resources/css/font-awesome.min.css" rel="stylesheet">
-<link href="/resources/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
+<link href="/sist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/sist/css/font-awesome.min.css" rel="stylesheet">
+<link href="/sist/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
 	rel="stylesheet">
-<link href="/resources/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
-<link href="/resources/css/animate.css" rel="stylesheet" media="screen">
-<link href="/resources/css/owl.theme.css" rel="stylesheet">
-<link href="/resources/css/owl.carousel.css" rel="stylesheet">
-<link href="/resources/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="/sist/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+<link href="/sist/css/animate.css" rel="stylesheet" media="screen">
+<link href="/sist/css/owl.theme.css" rel="stylesheet">
+<link href="/sist/css/owl.carousel.css" rel="stylesheet">
+<link href="http://localhost/sist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 <!-- Colors -->
 <!-- <link href="css/css-index-blue.css" rel="stylesheet" media="screen"> -->
@@ -31,7 +31,7 @@
 <!-- <link href="css/css-index-purple.css" rel="stylesheet" media="screen"> -->
 <!-- <link href="css/css-index-red.css" rel="stylesheet" media="screen"> -->
 <!-- <link href="css/css-index-orange.css" rel="stylesheet" media="screen"> -->
-<link href="/resources/css/css-index-yellow.css" rel="stylesheet" media="screen">
+<link href="/sist/css/css-index-yellow.css" rel="stylesheet" media="screen">
 
 <!-- Google Fonts -->
 <link rel="stylesheet"
@@ -164,7 +164,7 @@
 							data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
 							<figure>
 								<a href="exhibition_detail.jsp?ex_num=${ exList.ex_num }&ex_hall_num=${ exList.ex_hall_num }">
-							<img src="./img/${ exList.ex_poster }" />
+							<img src="./sist/img/${ exList.ex_poster }" />
 									
 								</a>
 							</figure>
@@ -244,26 +244,26 @@
 
 
 		<!-- /.javascript files -->
-		<script src="/resources/js/jquery.js"></script>
-		<script src="/resources/js/bootstrap.min.js"></script>
-		<script src="/resources/js/bootstrap-datetimepicker.min.js"></script>
-		<script src="/resources/js/custom.js"></script>
-		<script src="/resources/js/jquery.sticky.js"></script>
-		<script src="/resources/js/wow.min.js"></script>
-		<script src="/resources/js/owl.carousel.min.js"></script>
+		<script src="/sist/js/jquery.js"></script>
+		<script src="/sist/js/bootstrap.min.js"></script>
+		<script src="/sist/js/bootstrap-datetimepicker.min.js"></script>
+		<script src="/sist/js/custom.js"></script>
+		<script src="/sist/js/jquery.sticky.js"></script>
+		<script src="/sist/js/wow.min.js"></script>
+		<script src="/sist/js/owl.carousel.min.js"></script>
 		<script
 			src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 		<script
 			src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 		<script type="text/javascript"
 			src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
-		<script src="/resources/js/google.js"></script>
-		<script src="/resources/js/booking.js"></script>
-		<script src="/resources/js/bootstrap-hover-dropdown.js"></script>
-		<script src="/resources/js/jquery.validate.min.js"></script>
+		<script src="/sist/js/google.js"></script>
+		<script src="/sist/js/booking.js"></script>
+		<script src="/sist/js/bootstrap-hover-dropdown.js"></script>
+		<script src="/sist/js/jquery.validate.min.js"></script>
 
-		<script src="/resources/js/snap.svg-min.js"></script>
-		<script src="/resources/js/hovers.js"></script>
+		<script src="/sist/js/snap.svg-min.js"></script>
+		<script src="/sist/js/hovers.js"></script>
 
 		<script type="text/javascript">
 
@@ -321,7 +321,7 @@ var positions = [];
 	var tempData = 
 	<c:forEach var="locView" items="${ locView }">
 	{
-	        content: '<div style="color: black;">'${ locView.ex_name }'</div>', 
+	        content: '<div style="color: black;">${ locView.ex_name }</div>', 
 	        latlng: new kakao.maps.LatLng(${ locView.latitude },${ locView.longitude })
 	}
 	positions.push(tempData)
