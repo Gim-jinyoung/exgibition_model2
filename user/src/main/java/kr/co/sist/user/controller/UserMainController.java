@@ -15,8 +15,13 @@ public class UserMainController {
 	@Autowired(required = false)
 	private UserMainService us;
 	
-//	@RequestMapping(value="/user/index.do", method = GET)
-//	public String userMain(Model model) {
+	@RequestMapping(value="/user/user_index.do", method = GET)
+	public String userMain(Model model) {
+	
+		model.addAttribute("exView",us.mainExView());
+		model.addAttribute("locView",us.locView());
+		model.addAttribute("listView",us.listView());
 		
-//	}
+		return "user/index";
+	}
 }

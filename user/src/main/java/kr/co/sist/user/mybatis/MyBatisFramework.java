@@ -33,7 +33,7 @@ public class MyBatisFramework {
 			Reader reader = null;
 			try {
 				// 1.설정파일 연결
-				reader = Resources.getResourceAsReader("kr/co/sist/dao/mybatis/SqlMapConfig.xml");
+				reader = Resources.getResourceAsReader("kr/co/sist/user/mybatis/SqlMapConfig.xml");
 				// 2.MyBatis Framework 생성
 				ssf = new SqlSessionFactoryBuilder().build(reader);
 			} finally {
