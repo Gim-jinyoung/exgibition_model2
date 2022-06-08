@@ -1,11 +1,8 @@
-<%@page import="VO.ExhibitionHallVO"%>
-<%@page import="VO.ExhibitionVO"%>
 <%@page import="java.util.List"%>
-<%@page import="DAO.UserMainDAO"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"
-	 
-	%>
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -17,15 +14,15 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta charset="UTF-8" />
 <!-- CSS Files -->
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<link href="fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
+<link href="/sist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/sist/css/font-awesome.min.css" rel="stylesheet">
+<link href="/sist/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
 	rel="stylesheet">
-<link href="fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
-<link href="css/animate.css" rel="stylesheet" media="screen">
-<link href="css/owl.theme.css" rel="stylesheet">
-<link href="css/owl.carousel.css" rel="stylesheet">
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="/sist/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+<link href="/sist/css/animate.css" rel="stylesheet" media="screen">
+<link href="/sist/css/owl.theme.css" rel="stylesheet">
+<link href="/sist/css/owl.carousel.css" rel="stylesheet">
+<link href="/sist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 <!-- Colors -->
 <!-- <link href="css/css-index-blue.css" rel="stylesheet" media="screen"> -->
@@ -33,7 +30,7 @@
 <!-- <link href="css/css-index-purple.css" rel="stylesheet" media="screen"> -->
 <!-- <link href="css/css-index-red.css" rel="stylesheet" media="screen"> -->
 <!-- <link href="css/css-index-orange.css" rel="stylesheet" media="screen"> -->
-<link href="css/css-index-yellow.css" rel="stylesheet" media="screen">
+<link href="/sist/css/css-index-yellow.css" rel="stylesheet" media="screen">
 
 <!-- Google Fonts -->
 <link rel="stylesheet"
@@ -43,21 +40,6 @@
 
 
 <body data-spy="scroll" data-target="#navbar-scroll">
-<%
-					UserMainDAO umDAO = new UserMainDAO();
-					List<ExhibitionVO> list = umDAO.selectExRepresent();
-					int num=0,hall_num=0;
-					String name="",poster="",intro="";
-					for(ExhibitionVO ehVO:list){
-						num=ehVO.getEx_num();
-						name=ehVO.getEx_name();
-						poster=ehVO.getEx_poster();
-						intro=ehVO.getEx_intro();
-						hall_num=ehVO.getEx_hall_num();
-						
-
-					}
-					%>
 	<!-- /.preloader -->
 	<div id="preloader"></div>
 	<div id="top"></div>
@@ -66,18 +48,18 @@
 	<div class="fullscreen landing parallax"
 		data-img-width="2000"
 		data-img-height="1333" data-diff="100">
-
-		<div class="overlay"  style="background-image:url('./img/<%=poster %>')"; >
-		
+		<c:forEach var="exView" items="${ exView }">
+		<div class="overlay"  style="background-image:url('http://localhost/sist/img/${ exView.exhibition_poster }')">
 			<div class="container"  >
 				<div class="row">
 					<div class="col-md-7" >
 
 						<!-- /.logo -->
 						<div class="logo wow fadeInDown" >
-							<a href="index.jsp">Exhibition</a>
+							<a href="user_index.do">Exhibition</a>
 						</div>
 						<div class="head-btn wow fadeInLeft" style="width: 1300px;">
+
 							<%
 							
 							Object value= null; 
@@ -88,16 +70,16 @@
 							 <%
 							if(value==null){
 								%>
-								<a href="login.jsp" class="btn btn-default" id="login_btn"
+								<a href="login.do" class="btn btn-default" id="login_btn"
 								style="float: right;">로그인/회원가입</a>
 								<%
 							}else{
 								%>
-								<a href="my_account_pass.jsp"
+								<a href="my_account_pass.do"
 										class="btn btn-primary" id="my_info_btn" style="float: right;">내
 										정보</a>  
 										
-										<a href="index_logout.jsp"
+										<a href="index_logout.do"
 										class="btn btn-default" id="logout_btn" style="float: right">로그아웃</a>
 									<%
 							}
@@ -108,13 +90,13 @@
 							<!-- /.main title -->
 							<h1 class="wow fadeInLeft">
 								<span class="color"><a
-									href="exhibition_detail.jsp?ex_num=<%=num%>&ex_hall_num=<%=hall_num%>"><%=num%>.
-										<%=name%> </a></span>
+									href="exhibition_detail.do?ex_num=${ exView.ex_num }&ex_hall_num=${ exView.ex_hall_num}">${ exView.ex_num }.
+										${ exView.ex_name} </a></span>
 							</h1>
 
 							<!-- /.header paragraph -->
 							<div class="landing-text wow fadeInUp">
-								<p><%=intro%></p>
+								<p>${ exView.ex_intro }</p>
 							</div>
 
 						</div>
@@ -124,6 +106,7 @@
 
 
 		</div>
+								</c:forEach>
 		</div>
 
 
@@ -143,10 +126,10 @@
 			<div id="navbar-scroll"
 				class="collapse navbar-collapse navbar-backyard navbar-right">
 				<ul class="nav navbar-nav">
-					<li><a href="list.jsp">전체 전시 보기</a></li>
-					<li><a href="list.jsp">지역별 전시 보기</a></li>
-					<li><a href="reservation.jsp">예약하기</a></li>
-					<li><a href="board.jsp">게시판</a></li>
+					<li><a href="list.do">전체 전시 보기</a></li>
+					<li><a href="loc.do">지역별 전시 보기</a></li>
+					<li><a href="reservation.do">예약하기</a></li>
+					<li><a href="board.do">게시판</a></li>
 
 				</ul>
 			</div>
@@ -155,7 +138,7 @@
 
 	<!-- /.Cars section -->
 	<div class="container">
-		<form class="d-flex" action="list.search.jsp?pageNum=1" method="get">
+		<form class="d-flex" action="list.do?pageNum=1" method="get">
 				<button class="btn btn-outline-success" type="submit"
 					style="float: right; height: 50px">Search</button>
 				<input class="form-control me-2" type="search" placeholder="전시명을 입력하세요" name="ex_name"
@@ -230,26 +213,26 @@
 
 
 	<!-- /.javascript files -->
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap-datetimepicker.min.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/jquery.sticky.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
+	<script src="/sist/js/jquery.js"></script>
+	<script src="/sist/js/bootstrap.min.js"></script>
+	<script src="/sist/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="/sist/js/custom.js"></script>
+	<script src="/sist/js/jquery.sticky.js"></script>
+	<script src="/sist/js/wow.min.js"></script>
+	<script src="/sist/js/owl.carousel.min.js"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 	<script type="text/javascript"
 		src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
-	<script src="js/google.js"></script>
-	<script src="js/booking.js"></script>
-	<script src="js/bootstrap-hover-dropdown.js"></script>
-	<script src="js/jquery.validate.min.js"></script>
+	<script src="/sist/js/google.js"></script>
+	<script src="/sist/js/booking.js"></script>
+	<script src="/sist/js/bootstrap-hover-dropdown.js"></script>
+	<script src="/sist/js/jquery.validate.min.js"></script>
 
-	<script src="js/snap.svg-min.js"></script>
-	<script src="js/hovers.js"></script>
+	<script src="/sist/js/snap.svg-min.js"></script>
+	<script src="/sist/js/hovers.js"></script>
 
 
 	<script>
@@ -262,7 +245,7 @@
 		});
 	</script>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c9dda8d4f453a27430fc00656a00008f"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33a56ba20c73caaac66039b100edcde8"></script>
        <script>
             (function () {
                 function init() {
@@ -299,31 +282,16 @@ var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니
 // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
 var positions = [];
 var hallNum = [];
-	<%
-
-	List<ExhibitionHallVO> list2 = umDAO.selectExLocAll();
-	for(ExhibitionHallVO temp : list2){	
-		num	=	temp.getEx_hall_num();
-		name = temp.getEx_name();
-		Double longitude = temp.getLongitude();
-		Double latitude = temp.getLatitude();
-
-	%>
 		
 	
 		var tempData = 
+		<c:forEach var="searchLocEx" items="${ searchLocEx }">
 		{
-		        content: '<div style="color: black;"><a href="list_loc.jsp?ex_hall_num=<%=num%>&pageNum=1"><%=name%><br/>전시 리스트</div></a>', 
-		        latlng: new kakao.maps.LatLng(<%=latitude%>,<%=longitude%> )
+		        content: '<div style="color: black;"><a href="list_loc.do?ex_hall_num='${ searchLocEx.ex_hall_num }'&pageNum=1"><c:out value="${ searchLocEx.ex_name }"/><br/>전시 리스트</div></a>', 
+		        latlng: new kakao.maps.LatLng( ${ searchLocEx.latitude },${ searchLocEx.longitude } )
 		}
-		
-		
 		positions.push(tempData);
-		
-		
-	<%
-	}
-	%>
+		</c:forEach>
 
 	for (var i = 0; i < positions.length; i ++)  {
     // 마커를 생성합니다

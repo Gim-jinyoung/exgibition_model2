@@ -3,7 +3,6 @@ package kr.co.sist.user.dao;
 import java.util.List;
 
 import org.apache.ibatis.exceptions.PersistenceException;
-import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 
@@ -15,17 +14,17 @@ import kr.co.sist.user.vo.UserExhibitionVO;
 @Component
 public class UserExhibitionDetailDAO {
 
-		public UserExhibitionVO selectExhibition(int ex_num) throws PersistenceException{
-			UserExhibitionVO ue=null;
+		public List<UserExhibitionVO> selectExhibition(int ex_num)throws PersistenceException{
+			List<UserExhibitionVO> list=null;
 			
 			SqlSession ss=MyBatisFramework.getInstance().getMyBatisHandler();
-			ue=ss.selectOne("kr.co.sist.user.dao.exdetail.selectExhibition",ex_num);
+			list=ss.selectList("kr.co.sist.user.dao.exdetail.selectExhibition",ex_num);
 			if(ss!=null) {ss.close();}
 			
-			return  ue;
+			return  list;
 		}
 		
-		public List<UserBoardVO> selectRelBoard(int cat_num){
+		public List<UserBoardVO> selectRelBoard(int cat_num)throws PersistenceException{
 			List<UserBoardVO> list=null;
 			
 			SqlSession ss=MyBatisFramework.getInstance().getMyBatisHandler();
@@ -36,13 +35,13 @@ public class UserExhibitionDetailDAO {
 			return list;
 		}
 		
-		public UserExhibitionHallVO mapSelect(UserExhibitionHallVO exVO) {
-			UserExhibitionHallVO ueh=null;
+		public List<UserExhibitionHallVO> mapSelect(int ex_hall_num)throws PersistenceException {
+			List<UserExhibitionHallVO> list=null;
 			
 			SqlSession ss=MyBatisFramework.getInstance().getMyBatisHandler();
-			ueh=ss.selectOne("kr.co.sist.user.dao.exdetail.mapSelect",exVO);
+			list=ss.selectList("kr.co.sist.user.dao.exdetail.mapSelect",ex_hall_num);
 			
 			if(ss!=null) {ss.close();}
-			return ueh;
+			return list;
 		}
 }

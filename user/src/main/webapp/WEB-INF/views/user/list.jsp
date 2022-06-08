@@ -1,8 +1,7 @@
-<%@page import="DAO.UserExhibitionDAO"%>
 <%@page import="java.util.List"%>
-<%@page import="VO.ExhibitionVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="DAO.UserMainDAO"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	%>
@@ -16,14 +15,14 @@
 
 <meta charset="UTF-8" />
 <!-- CSS Files -->
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<link href="fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
+<link href="/sist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/sist/css/font-awesome.min.css" rel="stylesheet">
+<link href="/sist/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
 	rel="stylesheet">
-<link href="css/animate.css" rel="stylesheet" media="screen">
-<link href="css/owl.theme.css" rel="stylesheet">
-<link href="css/owl.carousel.css" rel="stylesheet">
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="/sist/css/animate.css" rel="stylesheet" media="screen">
+<link href="/sist/css/owl.theme.css" rel="stylesheet">
+<link href="/sist/css/owl.carousel.css" rel="stylesheet">
+<link href="/sist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 <!-- Colors -->
 <!-- <link href="css/css-index-blue.css" rel="stylesheet" media="screen"> -->
@@ -31,8 +30,8 @@
 <!-- <link href="css/css-index-purple.css" rel="stylesheet" media="screen"> -->
 <!-- <link href="css/css-index-red.css" rel="stylesheet" media="screen"> -->
 <!-- <link href="css/css-index-orange.css" rel="stylesheet" media="screen"> -->
-<link href="css/stacktable.css" rel="stylesheet" media="screen">
-<link href="css/css-index-yellow.css" rel="stylesheet" media="screen">
+<link href="/sist/css/stacktable.css" rel="stylesheet" media="screen">
+<link href="/sist/css/css-index-yellow.css" rel="stylesheet" media="screen">
 
 <!-- Google Fonts -->
 <link rel="stylesheet"
@@ -48,7 +47,7 @@
 
 	<!-- /.parallax full screen background image -->
 	<div class="fullscreen landing parallax blog-page"
-		style="background-image: url('images/bg-baner.jpg');"
+		style="background-image: url('/sist/images/bg-baner.jpg');"
 		data-img-width="2000" data-img-height="1333" data-diff="100">
 
 		<div class="overlay">
@@ -57,7 +56,7 @@
 
 					<!-- /.logo -->
 					<div class="logo wow fadeInDown" style="margin-top: 50px">
-						<a href="index.jsp">Exhibition</a>
+						<a href="user_index.do">Exhibition</a>
 					</div>
 
 
@@ -78,16 +77,16 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand site-name" href="index.jsp">Exhibition</a>
+				<a class="navbar-brand site-name" href="user_index.do">Exhibition</a>
 			</div>
 
 			<div id="navbar-scroll"
 				class="collapse navbar-collapse navbar-backyard navbar-right">
 				<ul class="nav navbar-nav">
-					<li><a href="list.jsp">전체 전시 보기</a></li>
-					<li><a href="loc.jsp">지역별 전시 보기</a></li>
-					<li><a href="reservation.jsp">예약하기</a></li>
-					<li><a href="board.jsp">게시판</a></li>
+					<li><a href="list.do">전체 전시 보기</a></li>
+					<li><a href="loc.do">지역별 전시 보기</a></li>
+					<li><a href="reservation.do">예약하기</a></li>
+					<li><a href="board.do">게시판</a></li>
 
 				</ul>
 			</div>
@@ -98,7 +97,7 @@
 	<!-- /.pricing section -->
 	<div id="myaccount">
 		<div class="container">
-			<form class="d-flex" action="list.search.jsp" method="get">
+			<form class="d-flex" action="list.do" method="get">
 				<button class="btn btn-outline-success" type="submit"
 					style="float: right; height: 50px">Search</button>
 				<input class="form-control me-2" type="search" placeholder="전시명을 입력하세요" name="ex_name"
@@ -123,39 +122,20 @@
 						<div class="container">
 
 							<div class="row carssections">
-							<%
-							
-							int pageSize = 2;
-							String pageNum=request.getParameter("pageNum");
-							if(pageNum==null){
-								pageNum="1";
-							}
-							int currentPage=Integer.parseInt(pageNum);
-							int startRow = (currentPage * 2) - 1; 
-							
-							String ex_name =null;
-							
-							UserExhibitionDAO exDAO=UserExhibitionDAO.getInstance();
-							List<ExhibitionVO> list=exDAO.selectAllExList(ex_name,startRow,pageSize);
-							
-							for(int i=0; i<list.size();i++){	
-							%>
+							<c:forEach var="exListView" items="${ exListView }">
 								<div class="screen wow fadeInUp"
 									data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
 									<figure>
 										<div class="screen wow fadeInUp"
 											style="position: absolute; left: 350px; width: 900px; height: 400px">
-											<strong><%=list.get(i).getEx_name()%></strong><br/><%=list.get(i).getEx_intro()%> 
+											<strong>${ exListView.ex_name }</strong><br/>${ exListView.ex_intro }
 										</div>
-										<%-- <a href="exhibition_detail.jsp?ex_num=<%=list.get(i).getEx_num()%>"> --%>
-										<a href="exhibition_detail.jsp?ex_num=<%=list.get(i).getEx_num()%>&ex_hall_num=<%=list.get(i).getEx_hall_num()%>">
-										<img src="./img/<%=list.get(i).getEx_poster() %>" style="width: 300px"/></a>
+										<a href="exhibition_detail.do?ex_num=${ exListView.ex_num }&ex_hall_num=${ exListView.ex_hall_num }">
+										<img src="http://localhost/sist/img/${ exListView.exhibition_poster }" style="width: 300px"/></a>
 											 
 									</figure>
 								</div>
-							<%
-							}
-							%>
+									</c:forEach>
 
 
 							</div>
@@ -170,35 +150,15 @@
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
 
-			<%
-			int cnt=exDAO.getTotalCount();
-			if(cnt!=0){
-				int pageCount=cnt/pageSize+(cnt%pageSize==0?0:1);
-				int pageBlock=2;
-				int startPage=((currentPage-1)/pageBlock)*pageBlock+1;
-				
-				int endPage=startPage+pageBlock-1;
-				if(endPage>pageCount){
-					endPage=pageCount;
-				}
 			
-				
-			%>
-			<% if(startPage>pageBlock){ %>
 			
-				<li class="page-item"><a class="page-link" href="list.jsp?pageNum=<%=startPage-pageBlock%>"
+				<li class="page-item"><a class="page-link" href="list.do?pageNum="
 					aria-label="Previous"><span aria-hidden="true">&laquo;</span>
 				</a></li>
-				<%} %>
-				<%for(int i=startPage;i<=endPage;i++){ %>
-				<li class="page-item"><a class="page-link" href="list.jsp?pageNum=<%=i%>"><%=i%></a></li>
-				<%} %>
-				<%if(endPage<pageCount){ %>
-				<li class="page-item"><a class="page-link" href="list.jsp?pageNum=<%=startPage+pageBlock %>"
+				<li class="page-item"><a class="page-link" href="list.jsp?pageNum="></a></li>
+				<li class="page-item"><a class="page-link" href="list.jsp?pageNum="
 					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 				</a></li>
-					<%} %>
-				<%} %>
 			</ul>
 		</nav>
 	</div>
@@ -245,14 +205,14 @@
 
 
 	<!-- /.javascript files -->
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap-datetimepicker.min.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/jquery.sticky.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.validate.min.js"></script>
+	<script src="/sist/js/jquery.js"></script>
+	<script src="/sist/js/bootstrap.min.js"></script>
+	<script src="/sist/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="/sist/js/custom.js"></script>
+	<script src="/sist/js/jquery.sticky.js"></script>
+	<script src="/sist/js/wow.min.js"></script>
+	<script src="/sist/js/owl.carousel.min.js"></script>
+	<script src="/sist/js/jquery.validate.min.js"></script>
 
 	<script>
 		new WOW().init();

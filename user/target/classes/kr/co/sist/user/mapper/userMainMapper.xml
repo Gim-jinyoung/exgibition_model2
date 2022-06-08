@@ -8,7 +8,8 @@
 		from
 			(select row_number() over( order by watch_count desc)as rank,ex_num, ex_name,
 					exhibition_poster, ex_intro, watch_count
-			from exhibition)
+			from exhibition
+			where ex_status like 'p')
 		where rank like 1
 	</select>
 
@@ -20,7 +21,7 @@
 	<select id="viewExList" resultType="ue">
 		select ex_num,ex_name,exhibition_poster,ex_intro,ex_hall_num, ex_status
 		from exhibition
-		where ex_status like 'n'
+		where ex_status like 'p'
 		order by watch_count
 	</select>
 </mapper>

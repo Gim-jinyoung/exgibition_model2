@@ -17,14 +17,16 @@ public class UserExhibitionDetailService {
 		@Autowired(required = false)
 		private UserExhibitionDetailDAO uedDAO;
 		
-		public UserExhibitionVO exhibitionView(int ex_num) {
-			UserExhibitionVO ue=null;
+		public List<UserExhibitionVO> exhibitionView(int ex_num) {
+			List<UserExhibitionVO> list=null;
+			
 			try {
-				ue=uedDAO.selectExhibition(ex_num);
+				list=uedDAO.selectExhibition(ex_num);
+				
 			} catch (PersistenceException pe) {
 				pe.printStackTrace();
 			}
-			return ue;
+			return list;
 		}
 		public List<UserBoardVO> relBoard(int cat_num) {
 			List<UserBoardVO> list=null;
@@ -37,14 +39,14 @@ public class UserExhibitionDetailService {
 			return list;
 		}
 		
-		public UserExhibitionHallVO mapView(UserExhibitionHallVO uehVO) {
-			UserExhibitionHallVO ueh=null;
+		public List<UserExhibitionHallVO> mapView(int ex_hall_num) {
+			List<UserExhibitionHallVO> list=null;
 			
 			try {
-				ueh=uedDAO.mapSelect(ueh);
+				list=uedDAO.mapSelect(ex_hall_num);
 			} catch (PersistenceException pe) {
 				pe.printStackTrace();
 			}
-			return ueh;
+			return list;
 		}
 }

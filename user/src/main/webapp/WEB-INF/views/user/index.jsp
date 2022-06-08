@@ -50,7 +50,7 @@
 	<div class="fullscreen landing parallax"
 		data-img-width="2000"
 		data-img-height="1333" data-diff="100">
-		<div class="overlay"  style="background-image:url('./img/${ exView.ex_poster }')">
+		<div class="overlay"  style="background-image:url('http://localhost/sist/img/${ exView.exhibition_poster }')">
 		
 			<div class="container"  >
 				<div class="row">
@@ -59,7 +59,7 @@
 
 						<!-- /.logo -->
 						<div class="logo wow fadeInDown" >
-							<a href="index.jsp">Exhibition</a>
+							<a href="user_index.do">Exhibition</a>
 						</div>
 						<div class="head-btn wow fadeInLeft" style="width: 1300px;">
 							<%				
@@ -71,16 +71,16 @@
 							 <%
 							if(value==null){
 								%>
-								<a href="login.jsp" class="btn btn-default" id="login_btn"
+								<a href="login.do" class="btn btn-default" id="login_btn"
 								style="float: right;">로그인/회원가입</a>
 								<%
 							}else{
 								%>
-								<a href="my_account_pass.jsp"
+								<a href="my_account_pass.do"
 										class="btn btn-primary" id="my_info_btn" style="float: right;">내
 										정보</a>  
 										
-										<a href="index_logout.jsp"
+										<a href="index_logout.do"
 										class="btn btn-default" id="logout_btn" style="float: right">로그아웃</a>
 									<%
 							}
@@ -91,7 +91,7 @@
 							<!-- /.main title -->
 							<h1 class="wow fadeInLeft">
 								<span class="color"><a
-									href="exhibition_detail.jsp?ex_num=${ exView.ex_num }&ex_hall_num=${ exView.ex_hall_num}">${ exView.ex_num }.
+									href="exhibition_detail.do?ex_num=${ exView.ex_num }&ex_hall_num=${ exView.ex_hall_num}">${ exView.ex_num }.
 										${ exView.ex_name} </a></span>
 							</h1>
 
@@ -127,10 +127,10 @@
 				<div id="navbar-scroll"
 					class="collapse navbar-collapse navbar-backyard navbar-right">
 					<ul class="nav navbar-nav">
-						<li><a href="list.jsp">전체 전시 보기</a></li>
-						<li><a href="loc.jsp">지역별 전시 보기</a></li>
-						<li><a href="reservation.jsp">예약하기</a></li>
-						<li><a href="board.jsp">게시판</a></li>
+						<li><a href="list.do">전체 전시 보기</a></li>
+						<li><a href="loc.do">지역별 전시 보기</a></li>
+						<li><a href="reservation.do">예약하기</a></li>
+						<li><a href="board.do">게시판</a></li>
 
 					</ul>
 				</div>
@@ -138,7 +138,7 @@
 		</div>
 		<!-- /.Cars section -->
 		<div class="container">
-			<form class="d-flex" action="list.search.jsp" method="get">
+			<form class="d-flex" action="list.do" method="get">
 				<button class="btn btn-outline-success" type="submit"
 					style="float: right; height: 50px">Search</button>
 				<input class="form-control me-2" type="search" placeholder="전시명을 입력하세요" name="ex_name"
@@ -163,8 +163,8 @@
 						<div class="screen wow fadeInUp"
 							data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
 							<figure>
-								<a href="exhibition_detail.jsp?ex_num=${ exList.ex_num }&ex_hall_num=${ exList.ex_hall_num }">
-							<img src="./sist/img/${ exList.ex_poster }" />
+								<a href="exhibition_detail.do?ex_num=${ exList.ex_num }&ex_hall_num=${ exList.ex_hall_num }">
+							<img src="http://localhost/sist/img/${ exList.exhibition_poster }"/>
 									
 								</a>
 							</figure>
@@ -182,7 +182,7 @@
 		<!-- /.contact section -->
 		<div id="contact">
 			<div class="action fullscreen parallax"
-				style="background-image: url('images/bg.jpg');"
+				style="background-image: url('/sist/images/bg.jpg');"
 				data-img-width="2000" data-img-height="1333" data-diff="100">
 				<div class="overlay">
 					<div class="container">
@@ -281,7 +281,7 @@
 	</script>
 
 		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	2844e76553cec2114d5fb8b7ba8fbec4"></script>
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33a56ba20c73caaac66039b100edcde8"></script>
 		<script>
             (function () {
                 function init() {
@@ -321,7 +321,7 @@ var positions = [];
 	var tempData = 
 	<c:forEach var="locView" items="${ locView }">
 	{
-	        content: '<div style="color: black;">${ locView.ex_name }</div>', 
+	        content: '<div style="color: black;">'<c:out value="${ locView.ex_name }"/>'</div>', 
 	        latlng: new kakao.maps.LatLng(${ locView.latitude },${ locView.longitude })
 	}
 	positions.push(tempData)

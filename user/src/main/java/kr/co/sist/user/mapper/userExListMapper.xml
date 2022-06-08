@@ -10,16 +10,17 @@
 			select row_number() over (ORDER BY watch_count) num,ex_num, ex_name, exhibition_poster, 
 			ex_intro,ex_info,add_img,ex_hall_num,ex_status
 			from exhibition
-			where ex_name like ${ex_name} and ex_status like 't')
+			where ex_status like 'p'
+			<if test="ex_name!=null">
+			 and  ex_name like '%' || #{ ex_name } ||'%'
+			</if>
+			)
 	</select>
 	
-	<select id="selectLocalExList" resultType="ue" >
-			select * 
-			from(	
-				select row_number() over (ORDER BY watch_count) num,ex_num, ex_name, exhibition_poster,
-						ex_intro,ex_info,add_img,ex_hall_num,ex_status
-				from exhibition
-			where ex_hall_num like ? and ex_status like 't')
+	<select id="selectLocalExList" resultType="ueh" >
+			select  ex_hall_name, ex_hall_num, longitude, latitude
+			from  exhibition_hall
+			
 	</select>
 
 

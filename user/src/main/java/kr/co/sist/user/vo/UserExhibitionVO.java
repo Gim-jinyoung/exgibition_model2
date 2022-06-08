@@ -1,20 +1,20 @@
 package kr.co.sist.user.vo;
 
 public class UserExhibitionVO {
-	private String ex_name, ex_poster, ex_info, ex_intro, add_Img, exhibit_date, dead_line, input_date, ex_status;
-	private int ex_hall_num, ex_num, total_count, adult, teen, child;
+	private String ex_name, exhibition_poster, ex_info, ex_intro, add_Img, exhibit_date, dead_line, input_date, ex_status;
+	private int ex_hall_num, ex_num, total_count, adult, teen, child, cat_num;
 
 	public UserExhibitionVO() {
 
 	}
 
-	public UserExhibitionVO(String ex_name, String ex_poster, String ex_info, String ex_intro, String add_Img,
+	public UserExhibitionVO(String ex_name, String exhibition_poster, String ex_info, String ex_intro, String add_Img,
 			String exhibit_date, String dead_line, String input_date, String ex_status, int ex_hall_num, int ex_num,
-			int total_count, int adult, int teen, int child) {
+			int total_count, int adult, int teen, int child,int cat_num) {
 		super();
 		this.ex_hall_num = ex_hall_num;
 		this.ex_name = ex_name;
-		this.ex_poster = ex_poster;
+		this.exhibition_poster = exhibition_poster;
 		this.ex_info = ex_info;
 		this.ex_intro = ex_intro;
 		this.add_Img = add_Img;
@@ -27,7 +27,15 @@ public class UserExhibitionVO {
 		this.adult = adult;
 		this.teen = teen;
 		this.child = child;
+		this.cat_num=cat_num;
+	}
 
+	public int getCat_num() {
+		return cat_num;
+	}
+
+	public void setCat_num(int cat_num) {
+		this.cat_num = cat_num;
 	}
 
 	public String getEx_name() {
@@ -46,12 +54,12 @@ public class UserExhibitionVO {
 		this.ex_name = ex_name;
 	}
 
-	public String getEx_poster() {
-		return ex_poster;
+	public String getExhibition_poster() {
+		return exhibition_poster;
 	}
 
-	public void setEx_poster(String ex_poster) {
-		this.ex_poster = ex_poster;
+	public void setExhibition_poster(String exhibition_poster) {
+		this.exhibition_poster = exhibition_poster;
 	}
 
 	public String getEx_info() {
@@ -170,11 +178,13 @@ public class UserExhibitionVO {
 
 	@Override
 	public String toString() {
-		return "UserExhibitionVO [ex_name=" + ex_name + ", ex_poster=" + ex_poster + ", ex_info=" + ex_info
-				+ ", ex_intro=" + ex_intro + ", add_Img=" + add_Img + ", exhibit_date=" + exhibit_date + ", dead_line="
-				+ dead_line + ", input_date=" + input_date + ", ex_status=" + ex_status + ", ex_hall_num=" + ex_hall_num
-				+ ", ex_num=" + ex_num + ", total_count=" + total_count + ", adult=" + adult + ", teen=" + teen
-				+ ", child=" + child + "]";
+		return "UserExhibitionVO [ex_name=" + ex_name + ", exhibition_poster=" + exhibition_poster + ", ex_info="
+				+ ex_info + ", ex_intro=" + ex_intro + ", add_Img=" + add_Img + ", exhibit_date=" + exhibit_date
+				+ ", dead_line=" + dead_line + ", input_date=" + input_date + ", ex_status=" + ex_status
+				+ ", ex_hall_num=" + ex_hall_num + ", ex_num=" + ex_num + ", total_count=" + total_count + ", adult="
+				+ adult + ", teen=" + teen + ", child=" + child + ", cat_num=" + cat_num + "]";
 	}
+
+
 	
 }
