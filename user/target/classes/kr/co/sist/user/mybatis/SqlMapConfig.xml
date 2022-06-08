@@ -8,6 +8,8 @@
 <typeAlias type="kr.co.sist.user.vo.UserExhibitionVO"  alias="ue"/>
 <typeAlias type="kr.co.sist.user.vo.UserExhibitionHallVO"  alias="ueh"/>
 <typeAlias type="kr.co.sist.user.vo.UserBoardVO" alias="ub"/>
+<typeAlias type="kr.co.sist.user.vo.UserBoardVO" alias="UserBoardVO"/>
+<typeAlias type="kr.co.sist.user.vo.MyReservationVO" alias="MyReservationVO"/>
 </typeAliases>
   <environments  default="development">
     <environment id="development">
@@ -24,6 +26,8 @@
   	<mapper resource="kr/co/sist/user/mapper/userExDetailMapper.xml"/>
   	<mapper resource="kr/co/sist/user/mapper/userExListMapper.xml"/>
   	<mapper resource="kr/co/sist/user/mapper/userMainMapper.xml"/>
+  	<mapper resource="kr/co/sist/user/mapper/userBoardMapper.xml"/>
+ 	<mapper resource="kr/co/sist/user/mapper/myReservationMapper.xml"/>
  
   </mappers>
 </configuration>

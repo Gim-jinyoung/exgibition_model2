@@ -1,6 +1,6 @@
-<%@page import="VO.BoardrVO"%>
+<%@page import="kr.co.sist.user.vo.UserBoardVO"%>
 <%@page import="java.util.List"%>
-<%@page import="DAO.BoardDAO"%>
+<%@page import="kr.co.sist.user.dao.UserBoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     %>
@@ -136,8 +136,8 @@ $(function(){
                                             <%
                                             
                                         
-								BoardDAO bDAO=BoardDAO.getInstance();
-								List<BoardrVO> catList=bDAO.selectCategory();
+								UserBoardDAO bDAO=UserBoardDAO.getInstance();
+								List<BoardrV> catList=bDAO.selectCategory();
 								
 								pageContext.setAttribute("catList", catList);
 								

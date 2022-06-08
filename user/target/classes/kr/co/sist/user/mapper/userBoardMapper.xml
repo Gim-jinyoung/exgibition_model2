@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sist.user.board">
+
+	<resultMap type="UserBoardVO" id="bdResult">
+		<result column="BD_ID" property="bd_id"/>
+		<result column="TITLE" property="title"/>
+		<result column="VIEWS" property="views"/>
+		<result column="INPUT_DATE" property="input_date"/>
+		<result column="USERID" property="userid"/>
+		<result column="CNT" property="cnt"/>
+		<result column="ROWNUM" property="rownum"/>
+	</resultMap>
+	
+	<!-- 카테고리에 따라 전체 게시글 리스트 보여주기 , 검색이 있다면 처리, 페이징 처리-->
+	<select id="selectBoard" resultMap="bdResult" parameterType="UserBoardVO">
+		select rnum, title, views, input_date, userid, cnt
+		from (select row_number() over (order bt b.input_date desc) rnum, b.bd_id, b.title, b.views, b.input_date, b.userid, count(c.cm_id) cnt
+			  from board b, comment_table c
+			  <where>
+				  (b.bd_id=c.bd_id(+)) and b.cat_num=#{cat_num}
+				  <choose>
+					  <when test="userid != null">
+					  	and	userid=#{userid} 
+					  </when>
+					   <when test="title != null">
+					  	and	title=#{title}
+					  </when>
+				  </choose>
+			  </where>
+			  group by b.bd_id, b.title, b.views, b.input_date, b.userid)
+		<where>
+			rnum between #{startNum} and #{endNum}
+		</where>
+	</select>
+	
+	  <!-- 페이징을 위한 게시글 전체 건수 조회 -->
+   <select id="totalBoardCnt" resultType="int" parameterType="int">
+	   	select	count(*) bd_id
+	   	from		board
+   	<where>
+   	 	cat_num=#{cat_num}
+   	</where>
+   </select>
+   
+   <!-- 게시글 삭제 -->
+   <delete id="deleteBoard" parameterType="int">
+   		delete from board where bd_id=#{bd_id}
+   </delete>
+   
+   <!-- 게시글 추가 -->
+  <insert id="insertBoard" parameterMap="UserBoardVO">
+  	insert into board(bd_id,title,description,cat_num,userid,imgfile) 
+  		values(bd_seq.nextval,#{title},#{description},#{cat_num},#{userid},#{imgfile})
+  </insert>
+  
+  <!-- 게시글 수정 -->
+  <update id="updateBoard" parameterType="UserBoardVO">
+  	update board set title=#{title}, description=#{description}, cat_num=#{cat_num}
+  	<if test="bVO.getImgfile() != null">
+  		, imgfile= #{imgfile}
+  	</if> 
+		where bd_id=#{bd_id} and userid=#{userid}
+  </update>
+  
+  <!-- 게시글 상세 출력-->
+  <select id="selectBoardDetail" resultMap="UserBoardVO" parameterType="int">
+	  	select ct.cat_name,b.title,b.userid,b.input_date,b.description,b.bd_id,b.imgfile
+		from board b, comment_table c,CATEGORY ct 
+		where (b.bd_id=c.bd_id(+) and b.cat_num(+)=ct.cat_num) and b.bd_id=#{bd_id}
+	</select>
+	
+	<!-- 카테고리 보여주기 -->
+	<resultMap type="UserBoardVO" id="catMap">
+		<result column="CAT_NAME" property="cat_name"/>
+		<result column="CAT_NUM" property="cat_num"/>
+	</resultMap>
+	<select id="selectCat" resultMap="catMap">
+		select cat_name,cat_num 
+		from category
+	</select>
+	
+	<!-- 게시글 클릭 할 때마다 view 수 수정 -->
+	<update id="updateView" parameterType="int">
+		update board set views =views+1 where bd_id=#{bd_id}
+	</update>
+	
+	<!-- 댓글 보여주기 -->
+	<resultMap type="UserBoardVO" id="comMap">
+		<result column="CM_DESCRIPTION" property="cm_description"/>
+		<result column="INPUT_DATE" property="input_date"/>
+		<result column="CM_ID" property="cm_id"/>
+		<result column="USERID" property="userid"/>
+	</resultMap>
+	
+	<select id="selectCom" resultMap="comMap" parameterType="int">
+		select cm_description,input_date ,cm_id,userid from comment_table where bd_id=#{bd_id}
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteCom" parameterType="int">
+		delete from comment_table where cm_id=#{cm_id}
+	</delete>
+	
+	<!-- 댓글 추가 -->
+	<insert id="insertCom" parameterType="UserBoardVO">
+		insert into comment_table(cm_id,cm_description,bd_id,userid) values(cm_seq.nextval,#{cm_description},#{bd_id},#{userid})
+	</insert>
+</mapper>
