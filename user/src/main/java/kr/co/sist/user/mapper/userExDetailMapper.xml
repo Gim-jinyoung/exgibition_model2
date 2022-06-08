@@ -9,13 +9,13 @@
 		where ex_num like #{ ex_num }
 	</select>
 	
-	<select id="selectRelBoard" resultType="ub">
+<!-- 	<select id="selectRelBoard" resultType="ub">
 		select bd_id,title,recommend,views,input_date,userid,cat_num
 		from board
 		where cat_num=#{ cat_num }
 		order by bd_id desc
 	</select>
-	
+	 -->
 	<select id="mapSelect" resultType="ueh">
 		select ex_hall_name, ex_hall_num, longitude, latitude
 		from exhibition_hall

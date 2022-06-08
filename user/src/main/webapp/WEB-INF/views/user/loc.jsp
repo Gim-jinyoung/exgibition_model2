@@ -58,33 +58,8 @@
 						<div class="logo wow fadeInDown" >
 							<a href="user_index.do">Exhibition</a>
 						</div>
+						
 						<div class="head-btn wow fadeInLeft" style="width: 1300px;">
-
-							<%
-							
-							Object value= null; 
-							if((Object)session.getAttribute("mVO")!=null){
-							value=(Object)session.getAttribute("mVO");
-							}
-							 %>
-							 <%
-							if(value==null){
-								%>
-								<a href="login.do" class="btn btn-default" id="login_btn"
-								style="float: right;">로그인/회원가입</a>
-								<%
-							}else{
-								%>
-								<a href="my_account_pass.do"
-										class="btn btn-primary" id="my_info_btn" style="float: right;">내
-										정보</a>  
-										
-										<a href="index_logout.do"
-										class="btn btn-default" id="logout_btn" style="float: right">로그아웃</a>
-									<%
-							}
-							 
-							 %>
 							 
 
 							<!-- /.main title -->
@@ -120,7 +95,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand site-name" href="#top">Exhibition</a>
+				<a class="navbar-brand site-name" href="user_index.do">Exhibition</a>
 			</div>
 
 			<div id="navbar-scroll"
@@ -129,7 +104,7 @@
 					<li><a href="list.do">전체 전시 보기</a></li>
 					<li><a href="loc.do">지역별 전시 보기</a></li>
 					<li><a href="reservation.do">예약하기</a></li>
-					<li><a href="board.do">게시판</a></li>
+					<li><a href="list.do">게시판</a></li>
 
 				</ul>
 			</div>

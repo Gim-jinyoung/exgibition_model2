@@ -130,7 +130,7 @@
 						<li><a href="list.do">전체 전시 보기</a></li>
 						<li><a href="loc.do">지역별 전시 보기</a></li>
 						<li><a href="reservation.do">예약하기</a></li>
-						<li><a href="board.do">게시판</a></li>
+						<li><a href="list.do">게시판</a></li>
 
 					</ul>
 				</div>

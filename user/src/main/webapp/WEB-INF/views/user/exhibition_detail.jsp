@@ -74,7 +74,7 @@
         
              <!-- NAVIGATION -->
         <div id="menu">
-               <div class="container""> 
+               <div class="container"> 
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-backyard">
                             <span class="sr-only">Toggle navigation</span>
@@ -90,7 +90,7 @@
                                <li><a href="list.do">전체 전시 보기</a></li>
                             <li><a href="loc.do">지역별 전시 보기</a></li>
                             <li><a href="reservation.do">예약하기</a></li>
-                                    <li><a href="board.do">게시판</a></li>
+                                    <li><a href="list.do">게시판</a></li>
                         
                         </ul>
                     </div>
@@ -105,8 +105,9 @@
                             <figure >
                                 <div class="screen wow fadeInUp" style="position:absolute; left:350px; width: 900px; height: 400px"><strong>${ exhibitionView.ex_num }. ${ exhibitionView.ex_name}</strong><br/>${ exhibitionView.ex_intro }</div>
                                 <img src="http://localhost/sist/img/${ exhibitionView.exhibition_poster }" style="width:300px"/>
-                             <a href="reservation.do"><input type="button"  value="예약" style="width:260px; background-color: #F0AD4E;color:#ffffff; border:0px ;margin-left: 500px"></a> 
-                                <a href="review.do?cat_num=${ exhibitionView.cat_num }"><input type="button"   value="후기" style="width:260px; margin-left: 15px ;background-color: #F0AD4E;color:#ffffff; border:0px"></a> 
+                             <a href="list.do"><input type="button"  value="예약" style="width:260px; background-color: #F0AD4E;color:#ffffff; border:0px ;margin-left: 500px"></a> 
+                               <%--  <a href="catBoard.do?cat_num=${ exhibitionView.cat_num }"> --%>
+                               <a href="list.do"><input type="button"   value="후기" style="width:260px; margin-left: 15px ;background-color: #F0AD4E;color:#ffffff; border:0px"></a> 
                             
                             </figure>
                         </div>   

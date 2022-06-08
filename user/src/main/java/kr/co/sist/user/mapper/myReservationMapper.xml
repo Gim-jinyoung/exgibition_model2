@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<!-- <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -17,15 +17,15 @@
 			where (e.ex_num(+)=r.ex_num) and userid=#{userid} order by rez_status desc
 	</select>
 	
-	<!-- 예약 상세 보여주기 -->
+	예약 상세 보여주기
 	<select id="selectRezDetail" resultType="MyReservationVO" parameterType="MyReservationVO">
 		select r.userid, r.rez_num, e.ex_name, eh.ex_hall_name ehx, to_char(r.visit_date,'yyyy-MM-dd') visit_date, r.rez_count ")
 			.append("from exhibition e, reservation r, exhibition_hall eh ")
 			.append("where (e.ex_num=r.ex_num and e.ex_hall_num=eh.ex_hall_num) and r.rez_num=? and r.userid=?
 	</select>
 	
-	<!-- 예약 취소  -->
+	예약 취소 
 	<update id="updateRez" parameterType="MyReservationVO">
 		update reservation set rez_status='f'  where userid=#{userid} and rez_num=#{rez_num}
 	</update>
-</mapper>
+</mapper> -->

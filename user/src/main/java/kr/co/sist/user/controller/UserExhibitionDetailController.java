@@ -24,11 +24,11 @@ public class UserExhibitionDetailController {
 		return "user/exhibition_detail";
 	}
 	//°Ô½ÃÆÇ
-	@RequestMapping(value="/user/board.do", method =  {GET, POST})
-	public String relBoardView(Model model,int cat_num) {
-		
-		model.addAttribute("relBoardView",ueds.relBoard(cat_num));
-		
-		return "user/board";
-	}
+//	@RequestMapping(value="/user/board.do", method =  {GET, POST})
+//	public String relBoardView(Model model,int cat_num) {
+//		
+//		model.addAttribute("relBoardView",ueds.relBoard(cat_num));
+//		
+//		return "user/board";
+//	}
 }

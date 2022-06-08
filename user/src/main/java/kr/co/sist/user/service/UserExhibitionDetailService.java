@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import kr.co.sist.user.dao.UserExhibitionDetailDAO;
-import kr.co.sist.user.vo.UserBoardVO;
 import kr.co.sist.user.vo.UserExhibitionHallVO;
 import kr.co.sist.user.vo.UserExhibitionVO;
 
@@ -28,16 +27,16 @@ public class UserExhibitionDetailService {
 			}
 			return list;
 		}
-		public List<UserBoardVO> relBoard(int cat_num) {
-			List<UserBoardVO> list=null;
-			
-			try {
-				list=uedDAO.selectRelBoard(cat_num);
-			} catch (PersistenceException pe) {
-				pe.printStackTrace();
-			}
-			return list;
-		}
+//		public List<UserBoardVO> relBoard(int cat_num) {
+//			List<UserBoardVO> list=null;
+//			
+//			try {
+//				list=uedDAO.selectRelBoard(cat_num);
+//			} catch (PersistenceException pe) {
+//				pe.printStackTrace();
+//			}
+//			return list;
+//		}
 		
 		public List<UserExhibitionHallVO> mapView(int ex_hall_num) {
 			List<UserExhibitionHallVO> list=null;

@@ -1,2 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/main/java/kr/co/sist/user/controller/MyRezController.java=UTF-8
+encoding//src/main/java/kr/co/sist/user/controller/UserBoardController.java=UTF-8
+encoding//src/main/java/kr/co/sist/user/dao/MyReservationDAO.java=UTF-8
 encoding//src/main/java/kr/co/sist/user/dao/UserBoardDAO.java=UTF-8
+encoding//src/main/java/kr/co/sist/user/service/MyRezService.java=UTF-8
+encoding//src/main/java/kr/co/sist/user/service/UserBoardService.java=UTF-8

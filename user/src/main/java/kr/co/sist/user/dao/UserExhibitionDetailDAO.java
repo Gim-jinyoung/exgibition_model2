@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 
 import kr.co.sist.user.mybatis.MyBatisFramework;
-import kr.co.sist.user.vo.UserBoardVO;
 import kr.co.sist.user.vo.UserExhibitionHallVO;
 import kr.co.sist.user.vo.UserExhibitionVO;
 
@@ -24,16 +23,16 @@ public class UserExhibitionDetailDAO {
 			return  list;
 		}
 		
-		public List<UserBoardVO> selectRelBoard(int cat_num)throws PersistenceException{
-			List<UserBoardVO> list=null;
-			
-			SqlSession ss=MyBatisFramework.getInstance().getMyBatisHandler();
-			list=ss.selectList("kr.co.sist.user.dao.exdetail.selectRelBoard");
-			
-			if(ss!=null) {ss.close();}
-			
-			return list;
-		}
+//		public List<UserBoardVO> selectRelBoard(int cat_num)throws PersistenceException{
+//			List<UserBoardVO> list=null;
+//			
+//			SqlSession ss=MyBatisFramework.getInstance().getMyBatisHandler();
+//			list=ss.selectList("kr.co.sist.user.dao.exdetail.selectRelBoard");
+//			
+//			if(ss!=null) {ss.close();}
+//			
+//			return list;
+//		}
 		
 		public List<UserExhibitionHallVO> mapSelect(int ex_hall_num)throws PersistenceException {
 			List<UserExhibitionHallVO> list=null;
