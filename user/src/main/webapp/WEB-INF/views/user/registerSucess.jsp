@@ -1,27 +1,7 @@
-<%@page import="VO.MemberVO"%>
-<%@page import="DAO.UserMemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     %>
-    <%
-    //한글
-    request.setCharacterEncoding("UTF-8");
-    
-    String userId=request.getParameter("userId");
-    String password=request.getParameter("password");
-    String name=request.getParameter("name");
-    String tel=request.getParameter("tel");
-    String zipcode=request.getParameter("zipcode"); 
-    String address1=request.getParameter("address1");
-    String address2=request.getParameter("address2"); 
-    
-    MemberVO mVO=new MemberVO(userId,tel,zipcode,address1,address2,password,"",name,' ');
-    //String userId, String tel, String zipcode, String address1, String ad dress2, String password,
-			//String isSubscribeDate, String name, char isDeleted
-	UserMemberDAO umDAO=UserMemberDAO.getInstance();
-    umDAO.insertMember(mVO);
-	
-    %>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,10 +100,10 @@
 					</div>
 					<div class="row register">
 					<div class="form-group" style="height: 150px; ">
-					<h2 style="margin-top: 50px"><%=name %>님회원가입을 축하드립니다!</h2>
+					<h2 style="margin-top: 50px">회원가입을 축하드립니다!</h2>
 
 					</div>
-					<a href="index.jsp"><input type="button" id="find_direction"
+					<a href="index.do"><input type="button" id="find_direction"
 						class="btn btn-warning btn-block btn-lg" value="메인으로 돌아가기"></a>
 				</div>
 			</div>

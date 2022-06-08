@@ -68,17 +68,17 @@ $(function(){
 	                        extraAddr = ' (' + extraAddr + ')';
 	                    }
 	                    // 조합된 참고항목을 해당 필드에 넣는다.
-	                    document.getElementById("addr1").value = extraAddr;
+	                    document.getElementById("address1").value = extraAddr;
 	                
 	                } else {
-	                    document.getElementById("addr1").value = '';
+	                    document.getElementById("address1").value = '';
 	                }
 
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById('addr1').value = data.zonecode;
-	                document.getElementById("addr1").value = addr;
+	                document.getElementById('address1').value = data.zonecode;
+	                document.getElementById("address1").value = addr;
 	                // 커서를 상세주소 필드로 이동한다.
-	                document.getElementById("addr2").focus();
+	                document.getElementById("address2").focus();
 		    }
 		}).open();
 	});
@@ -88,7 +88,7 @@ $(function(){
 	});
 });
 function check() {
-	var check=["id","password1",'password2','name','addr1','addr2'];
+	var check=["userId","password",'password2','name','address1','address2'];
 	var name=["이메일","비밀번호","비밀번호","이름","주소","주소"];
 for(var i=0; i<check.length;i++){
 	if($("#"+check[i]).val() ==""){
@@ -96,13 +96,13 @@ for(var i=0; i<check.length;i++){
 		return;
 	}//end if 
 }//end for
-if($("#password1").val() != $("#password2").val()){
+if($("#password").val() != $("#password2").val()){
 	alert("비밀번호가 다릅니다.");
 	return;
 }//end if
 	//location.href="registerSucess.jsp";
 	//폼에 값을 넘길때에는 location아니에요 
-	$("#pFrm").submit();//submit해야 넘어갑니다.
+	 $("#pFrm").submit();//submit해야 넘어갑니다.
 }//end check
 
 </script>
@@ -170,21 +170,21 @@ if($("#password1").val() != $("#password2").val()){
                     </div>
                     <div class="row register">
 						
-                        <form action="registerSucess.jsp" method="post" name="pFrm"  id="pFrm">
+                        <form action="http://localhost/sist/user/register.do" method="post" name="pFrm"  id="pFrm">
                             <div class="form-group">
                                 <label for="email-login">이메일</label>
-                                <input class="form-control" id="id" type="text" name="userId"   value="">
+                                <input class="form-control" id="userId" type="text" name="userId"   value="">
                                 <input type="button" id="checkmail" class="btn btn-warning btn-block btn-lg" value="중복확인">
                              	<font id="checkId" size="2"></font>
                             </div>
                          
                             <div class="form-group">
                                 <label for="password-login">비밀번호</label>
-                                <input class="form-control" id="password1" type="password" name="password" value="">
+                                <input class="form-control" id="password" type="password" name="password" value="">
                             </div>
                             <div class="form-group">
                                 <label for="password-login">비밀번호 확인</label>
-                                <input class="form-control" id="password2" type="password" value="">
+                                <input class="form-control" id="password2" type="password" value="" name="password2">
                                 <div id="output" style="height: 50px; width: 500px"></div>
                             </div>
                             <div class="form-group">
@@ -193,18 +193,18 @@ if($("#password1").val() != $("#password2").val()){
                             </div>
                             <div class="form-group">
                                 <label for="name-login">전화번호</label>
-                                <input class="form-control" id="name" type="text" name="tel" value="">
+                                <input class="form-control" id="tel" type="text" name="tel" value="">
                             </div>
                             <div class="form-group">
                                 <label for="addr-login">주소</label>
-                                <input class="form-control" id="addr1" type="text" name="address1" value=""/>
-                                <input class="form-control" id="addr2" type="text" name="address2" value=""><br/>
+                                <input class="form-control" id="address1" type="text" name="address1" value=""/>
+                                <input class="form-control" id="address2" type="text" name="address2" value=""><br/>
                             <a href="#void"><input type="button" id="find_addr" class="btn btn-warning btn-block btn-lg" value="우편번호 찾기"></a> 
                             </div>
                             <div class="text-center">
                             <div class="form-group">
                                 <label for="name-login">우편번호</label>
-                                <input class="form-control" id="name" type="text" name="zipcode" value="">
+                                <input class="form-control" id="zipcode" type="text" name="zipcode" value="">
                             </div>
                                 <input type="button" id="next" class="btn btn-warning btn-block btn-lg" value="다음">
                             </div>
@@ -266,7 +266,7 @@ if($("#password1").val() != $("#password2").val()){
             <script src="js/jquery.validate.min.js"></script> 
 
 		<script type="text/javascript">
-		$("#checkmail").click(function(){
+		/* $("#checkmail").click(function(){
 			let userId =$("#id").val();
 			
 			$.ajax({
@@ -289,7 +289,7 @@ if($("#password1").val() != $("#password2").val()){
 				}
 			})
 			
-		})//focusout
+		})//focusout */
 		</script>
 
         <script>

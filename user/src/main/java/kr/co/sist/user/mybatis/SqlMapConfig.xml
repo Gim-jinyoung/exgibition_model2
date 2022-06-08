@@ -7,6 +7,7 @@
 <typeAliases>
 <typeAlias type="kr.co.sist.user.vo.UserExhibitionVO"  alias="ue"/>
 <typeAlias type="kr.co.sist.user.vo.UserExhibitionHallVO"  alias="ueh"/>
+<typeAlias type="kr.co.sist.user.vo.MemberVO"  alias="member"/>
 <!-- <typeAlias type="kr.co.sist.user.vo.UserBoardVO" alias="UserBoardVO"/>
 <typeAlias type="kr.co.sist.user.vo.MyReservationVO" alias="MyReservationVO"/> -->
 </typeAliases>

@@ -1,23 +1,24 @@
 package kr.co.sist.user.service;
 
-import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.sist.user.dao.UserJoinDAO;
 import kr.co.sist.user.vo.MemberVO;
 
-@Service
+@Service("userJoinService")
 public class UserJoinServiceImpl implements UserJoinService {
-@Autowired(required = false)
- UserJoinDAO ujDAO;
+
+	@Autowired(required = false)
+	private UserJoinDAO ujDAO;
 	
 	@Override
-	public void UserJoin(MemberVO mVO)throws Exception{
-		ujDAO.UserJoin(mVO);//회원가입
+	public void joinUser(MemberVO mVO) {
+		ujDAO.joinUser(mVO);
 	}
-	public MemberVO Iogin(MemberVO mVO)throws Exception{
-		return ujDAO.Iogin(mVO);//로그인
+	@Override
+	public MemberVO idCheck(String userId) {
+		return ujDAO.idCheck(userId);
 	}
+	
 }

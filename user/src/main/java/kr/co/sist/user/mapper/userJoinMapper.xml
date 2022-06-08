@@ -6,15 +6,17 @@
 <!-- 회원가입 -->
 <insert id="memberInsert">
 insert into member 
-(userid,password,name,tel,zipcode,address1,address2)
-values(#{userid},#{password},#{name},#{tel},#{zipcode},#{address1},#{address2})
+(userId,password,name,tel,zipcode,address1,address2)
+values(#{userId},#{password},#{name},#{tel},#{zipcode},#{address1},#{address2})
 </insert>
 <!-- 로그인 -->
-<select id="login" resultType="kr.co.sist.user.vo.MemberVO">
+<select id="login" resultType="member">
 select userId,password
 from member
-where userId=#{userId} and password=#{password}
+where userId=#{userId,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
 </select>
-
+<select id="idCheck" parameterType="String" resultType="member">
+		select * from users where userId=#{userId}
+	</select>
 
 </mapper>
