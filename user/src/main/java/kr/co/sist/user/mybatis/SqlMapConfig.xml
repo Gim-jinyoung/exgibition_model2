@@ -28,6 +28,7 @@
   	<mapper resource="kr/co/sist/user/mapper/userMainMapper.xml"/>
   	<mapper resource="kr/co/sist/user/mapper/userBoardMapper.xml"/>
  	<mapper resource="kr/co/sist/user/mapper/myReservationMapper.xml"/>
+ 	<mapper resource="kr/co/sist/user/mapper/userJoinMapper.xml"/>
  
   </mappers>
 </configuration>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sist.user">
+<!-- 회원가입 -->
+<insert id="memberInsert">
+insert into member 
+(userid,password,name,tel,zipcode,address1,address2)
+values(#{userid},#{password},#{name},#{tel},#{zipcode},#{address1},#{address2})
+</insert>
+<!-- 로그인 -->
+<select id="login" resultType="kr.co.sist.user.vo.MemberVO">
+select userId,password
+from member
+where userId=#{userId} and password=#{password}
+</select>
+
+
+</mapper>
