@@ -12,14 +12,14 @@
 
 <meta charset="UTF-8" />
 <!-- CSS Files -->
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<link href="fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
+<link href="/sist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/sist/css/font-awesome.min.css" rel="stylesheet">
+<link href="/sist/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
 	rel="stylesheet">
-<link href="css/animate.css" rel="stylesheet" media="screen">
-<link href="css/owl.theme.css" rel="stylesheet">
-<link href="css/owl.carousel.css" rel="stylesheet">
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="/sist/css/animate.css" rel="stylesheet" media="screen">
+<link href="/sist/css/owl.theme.css" rel="stylesheet">
+<link href="/sist/css/owl.carousel.css" rel="stylesheet">
+<link href="/sist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 <!-- Colors -->
 <!-- <link href="css/css-index-blue.css" rel="stylesheet" media="screen"> -->
@@ -27,8 +27,8 @@
 <!-- <link href="css/css-index-purple.css" rel="stylesheet" media="screen"> -->
 <!-- <link href="css/css-index-red.css" rel="stylesheet" media="screen"> -->
 <!-- <link href="css/css-index-orange.css" rel="stylesheet" media="screen"> -->
-<link href="css/stacktable.css" rel="stylesheet" media="screen">
-<link href="css/css-index-yellow.css" rel="stylesheet" media="screen">
+<link href="/sist/css/stacktable.css" rel="stylesheet" media="screen">
+<link href="/sist/css/css-index-yellow.css" rel="stylesheet" media="screen">
 
 <!-- Google Fonts -->
 <link rel="stylesheet"
@@ -156,14 +156,14 @@
 
 
 	<!-- /.javascript files -->
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap-datetimepicker.min.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/jquery.sticky.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.validate.min.js"></script>
+	<script src="/sist/js/jquery.js"></script>
+	<script src="/sist/js/bootstrap.min.js"></script>
+	<script src="/sist/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="/sist/js/custom.js"></script>
+	<script src="/sist/js/jquery.sticky.js"></script>
+	<script src="/sist/js/wow.min.js"></script>
+	<script src="/sist/js/owl.carousel.min.js"></script>
+	<script src="/sist/js/jquery.validate.min.js"></script>
 
 	<script>
 		new WOW().init();

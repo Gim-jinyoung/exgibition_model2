@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     errorPage="/error.jsp"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,14 +12,14 @@
 
         <meta charset="UTF-8" />
         <!-- CSS Files -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
-        <link href="fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
-        <link href="css/animate.css" rel="stylesheet" media="screen">
-        <link href="css/owl.theme.css" rel="stylesheet">
-        <link href="css/owl.carousel.css" rel="stylesheet">
-        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link href="/sist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="/sist/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/sist/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+        <link href="/sist/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+        <link href="/sist/css/animate.css" rel="stylesheet" media="screen">
+        <link href="/sist/css/owl.theme.css" rel="stylesheet">
+        <link href="/sist/css/owl.carousel.css" rel="stylesheet">
+        <link href="/sist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
         <!-- Colors -->
         <!-- <link href="css/css-index-blue.css" rel="stylesheet" media="screen"> -->
@@ -26,7 +27,7 @@
         <!-- <link href="css/css-index-purple.css" rel="stylesheet" media="screen"> -->
         <!-- <link href="css/css-index-red.css" rel="stylesheet" media="screen"> -->
         <!-- <link href="css/css-index-orange.css" rel="stylesheet" media="screen"> -->
-        <link href="css/css-index-yellow.css" rel="stylesheet" media="screen"> 
+        <link href="/sist/css/css-index-yellow.css" rel="stylesheet" media="screen"> 
 
         <!-- Google Fonts -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" />
@@ -48,7 +49,7 @@
 
                         <!-- /.logo -->
                         <div class="logo wow fadeInDown" style="margin-top: 50px"> 
-                            <a href="index.jsp">Exhibition</a>
+                            <a href="index.do">Exhibition</a>
                         </div>
 
                         <!-- /.main title -->
@@ -75,7 +76,7 @@
                     </div>
                     <div class="row sign-in">
 
-                        <form action="http://localhost/user_prj/idclear.jsp" method="post" name="frm" id="frm">
+                        <form action="http://localhost/sist/user/idfind.do" method="post" name="frm" id="frm">
                             <div class="form-group">
                                 <label for="email">이름</label>
                                 <input class="form-control" id="name" type="text" name="name" value="">
@@ -84,11 +85,33 @@
                                 <label for="password">휴대번호</label>
                                 <input class="form-control" id="tel" type="text" name="tel" value="">
                             </div>
-                            
                             <div class="text-center">
-                              <input type="button" id="findid" class="btn btn-warning btn-block btn-lg" value="next>">
+                              <input type="submit" id="findid" class="btn btn-warning btn-block btn-lg" value="찾기">
                             </div>
-                        </form>
+                          	<!-- 이름과 전화번호가 일치하지 않을 때 -->
+                            <c:if test="${check == 1}">
+							<script>
+							opener.document.findform.name.value = "";
+							opener.document.findform.tel.value = "";
+							</script>
+							<label>일치하는 정보가 존재하지 않습니다.</label>
+							</c:if>
+							<!-- 일치할때 -->
+                        <c:if test="${check == 0 }">
+					<label>찾으시는 아이디는'${id}' 입니다.</label>
+					<div class="form-label-group">
+						<a href="http://localhost/sist/user/user_index.do" class="btn btn-default" id=""
+								style="float: right;">메인으로가기</a>
+			</div>
+		</c:if>
+
+	</form>
+	
+	<!-- <script type="text/javascript">
+		function closethewindow(){
+			location.href="http://localhost/sist/user/user_index.do";
+		}
+	</script> -->
 
                     </div>
                 </div>
@@ -137,14 +160,14 @@
 
 
         <!-- /.javascript files -->
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap-datetimepicker.min.js"></script>
-        <script src="js/custom.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/wow.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-            <script src="js/jquery.validate.min.js"></script> 
+        <script src="/sist/js/jquery.js"></script>
+        <script src="/sist/js/bootstrap.min.js"></script>
+        <script src="/sist/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="/sist/js/custom.js"></script>
+        <script src="/sist/js/jquery.sticky.js"></script>
+        <script src="/sist/js/wow.min.js"></script>
+        <script src="/sist/js/owl.carousel.min.js"></script>
+            <script src="/sist/js/jquery.validate.min.js"></script> 
 
 
 
@@ -152,24 +175,24 @@
             new WOW().init();
 
         </script>
-        <script type="text/javascript">
-        $(function(){
+        <!-- <script type="text/javascript">
+         $(function(){
         	$("#findid").click(function() {
         		var name=$("#name").val();
-        		var phone=$("#tel").val();
+        		var tel=$("#tel").val();
 				if(name==""){
 					alert("이름을 입력해주세요.");
 					return;
 				}
-				if(phone==""){
+				if(tel==""){
 					alert("휴대폰번호를 입력해주세요.");
 					return;
 				}
 			$("#frm").submit();	
 			});
         	
-        });
-        </script>
+        }); 
+        </script> -->
 
     </body>
 </html>
