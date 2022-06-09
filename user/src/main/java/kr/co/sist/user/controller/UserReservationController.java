@@ -20,6 +20,7 @@ public class UserReservationController {
 	@Autowired(required = false)
 	private UserReservationService urs;
 	
+	
 	@RequestMapping(value="/user/exInfo.do", method=GET)
 	public String exInfo(Model model,@RequestParam(defaultValue ="1" ) int ex_num) {
 		
