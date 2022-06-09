@@ -39,7 +39,20 @@
 
         <!-- Google Fonts -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" />
-
+<style type="text/css">
+	.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;}
+    .info .desc {position: relative;margin: 13px 0 0 20px;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+    .info .link {color: #5085BB;}
+</style>
     </head>
 
 
@@ -175,7 +188,7 @@
 
 
 
-	<script>
+	 	<script>
 		new WOW().init();
 		$('#date_time').datetimepicker({
 			format : 'dd/MM/yyyy hh:mm:ss',
@@ -184,55 +197,88 @@
 			pickTime : true
 		});
 	</script>
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33a56ba20c73caaac66039b100edcde8"></script>
-       <script>
-            (function () {
-                function init() {
-                    var speed = 250,
-                            easing = mina.easeinout;
-                    [].slice.call(document.querySelectorAll('#carssections > div')).forEach(function (el) {
-                        var s = Snap(el.querySelector('svg')), path = s.select('path'),
-                                pathConfig = {
-                                    from: path.attr('d'),
-                                    to: el.getAttribute('data-path-hover')
-                                };
 
-                        el.addEventListener('mouseenter', function () {
-                            path.animate({'path': pathConfig.to}, speed, easing);
-                        });
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33a56ba20c73caaac66039b100edcde8"></script>
 
-                        el.addEventListener('mouseleave', function () {
-                            path.animate({'path': pathConfig.from}, speed, easing);
-                        });
-                    });
-                }
-                init();
-            })();
-        </script>
-        <script>
-  <c:forEach var="exListView" items="${ exListView }">
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new kakao.maps.LatLng(${ mapView.latitude },${ mapView.longitude }), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };
-</c:forEach>
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+ 		<script>
+ 		
+ 		<c:forEach var="mapView" items="${ mapView }">
+ 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+ 	    mapOption = { 
+ 	        center: new kakao.maps.LatLng(${ mapView.latitude }, ${ mapView.longitude }), // 지도의 중심좌표
+ 	        level: 8 // 지도의 확대 레벨
+ 	    };
 
-// 마커가 표시될 위치입니다 
-  <c:forEach var="exListView" items="${ exListView }">
-var markerPosition  = new kakao.maps.LatLng(${ mapView.latitude },${ mapView.longitude }); 
-</c:forEach>
-// 마커를 생성합니다
-var marker = new kakao.maps.Marker({
-    position: markerPosition
-});
+ 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+ 	 
+ 	// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+ 	var positions = [
 
-// 마커가 지도 위에 표시되도록 설정합니다
-marker.setMap(map);
+ 	    {
+ 	        content: 
+ 	        '<div class="wrap">' + 
+ 	         '    <div class="info">' + 
+ 	          '        <div class="title">' + 
+ 	          '            <c:out value="${ mapView.ex_hall_name }"/>' + 
+ 	          '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+ 	          '        </div>' + 
+ 	          '            <div class="desc">' + 
+ 	          '                <div class="ellipsis">주소: <c:out value="${ mapView.address1 }"/></div>' + 
+ 	          '                <div class="ellipsis"> <c:out value="${ mapView.address2 }"/></div><br/>' + 
+ 	          '                <div class="jibun ellipsis">우)<c:out value="${ mapView.zipcode }"/></div>' + 
+ 	          '            </div>' + 
+ 	          '        </div>' + 
+ 	          '    </div>' +    
+ 	          '</div>',
+ 	        latlng: new kakao.maps.LatLng(${ mapView.latitude }, ${ mapView.longitude })
+ 	    },
+ 	   </c:forEach>
+ 	];
 
-// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-// marker.setMap(null);    
-</script>
+ 	for (var i = 0; i < positions.length; i ++) {
+ 	    // 마커를 생성합니다
+ 	    var marker = new kakao.maps.Marker({
+ 	    	
+ 	        map: map, // 마커를 표시할 지도
+ 	        position: positions[i].latlng // 마커의 위치
+ 	    });
+ 	   var overlay = new kakao.maps.CustomOverlay({
+ 		  content: positions[i].content ,
+ 		    map: map,
+ 		    position: marker.getPosition()       
+ 		});
+ 	   
+ 	    // 마커에 표시할 인포윈도우를 생성합니다 
+
+ 	    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+ 	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+ 	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+ 	   kakao.maps.event.addListener(marker, 'click', function() {
+ 		    overlay.setMap(map);
+ 		});
+
+ 
+ 	}
+
+ 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+ 			// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+ 		function closeOverlay() {
+ 		    overlay.setMap(null);     
+ 		}
+ 	function makeOverListener(map, marker) {
+ 	    return function() {
+ 	        infowindow.open(map, marker);
+ 	    };
+ 	}
+
+ 	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+ 	function makeOutListener(infowindow) {
+ 	    return function() {
+ 	        infowindow.close();
+ 	    };
+ 	} 
+ 	</script>
+
     </body>
 </html>

@@ -13,11 +13,11 @@ import kr.co.sist.user.vo.UserExhibitionVO;
 @Component
 public class UserexhibitionDAO {
 
-	public List<UserExhibitionVO> selectAllExList(String ex_name)throws PersistenceException{
+	public List<UserExhibitionVO> selectAllExList(int ex_hall_num)throws PersistenceException{
 		List<UserExhibitionVO> list=null;
 		
 		SqlSession ss=MyBatisFramework.getInstance().getMyBatisHandler();
-		list=ss.selectList("kr.co.sist.user.dao.userexlist.selectAllExList",ex_name);
+		list=ss.selectList("kr.co.sist.user.dao.userexlist.selectAllExList",ex_hall_num);
 		
 		if(ss!=null ) {ss.close();}
 		return list;

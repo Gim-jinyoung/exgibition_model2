@@ -17,10 +17,10 @@ public class UserExhibitionController {
 	//전시 리스트
 	
 	@RequestMapping(value="/user/list.do",method = GET)
-	public String exListView(Model model, String ex_name) {
+	public String exListView(Model model,@RequestParam(defaultValue ="0") int ex_hall_num) {
 		model.addAttribute("exListView",us.exListAllView());
-		if(ex_name!=null) {
-			model.addAttribute("exListView",us.exListView(ex_name));
+		if(ex_hall_num!=0) {
+			model.addAttribute("exListView",us.exListView(ex_hall_num));
 		}		
 		return "user/list";
 	}

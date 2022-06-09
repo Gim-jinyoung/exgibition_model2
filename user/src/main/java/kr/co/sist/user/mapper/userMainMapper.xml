@@ -14,7 +14,7 @@
 	</select>
 
 	<select id="selectExLocAll" resultType="ueh">
-		select ex_hall_name,ex_hall_num, longitude, latitude
+		select ex_hall_name,ex_hall_num, longitude, latitude , address1 , zipcode
 		from exhibition_hall
 	</select>
 

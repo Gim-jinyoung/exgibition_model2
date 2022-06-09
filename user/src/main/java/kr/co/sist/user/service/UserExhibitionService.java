@@ -18,11 +18,11 @@ public class UserExhibitionService {
 	@Autowired(required = false)
 	private UserexhibitionDAO ueDAO;
 	
-	public List<UserExhibitionVO> exListView(String ex_name) {
+	public List<UserExhibitionVO> exListView(int ex_hall_num) {
 		List<UserExhibitionVO> list=null;
 		
 		try {
-			list=ueDAO.selectAllExList(ex_name);
+			list=ueDAO.selectAllExList(ex_hall_num);
 		} catch (PersistenceException pe) {
 			pe.printStackTrace();
 		}

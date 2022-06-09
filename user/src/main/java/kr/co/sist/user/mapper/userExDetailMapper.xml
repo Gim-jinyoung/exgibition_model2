@@ -17,7 +17,7 @@
 	</select>
 	 -->
 	<select id="mapSelect" resultType="ueh">
-		select ex_hall_name, ex_hall_num, longitude, latitude
+		select  ex_hall_name, ex_hall_num, longitude, latitude,address1,address2,zipcode
 		from exhibition_hall
 		where ex_hall_num like #{ ex_hall_num }
 	</select>
