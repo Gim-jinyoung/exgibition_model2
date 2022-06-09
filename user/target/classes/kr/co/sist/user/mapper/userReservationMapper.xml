@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.sist.user.userRez">
+
+<!-- 날짜 보여주기 -->
+	<select id="selectDate" resultType="String" parameterType="int">
+		select deadline from exhibition where ex_num=#{ex_num}
+	</select>
+	
+	<!-- 전시 보여주기 -->
+	<resultMap type="UserReservationVO" id="userRezMap">
+		<result column="EX_NUM" property="ex_num"/>
+		<result column="EX_NAME" property="ex_name"/>
+		<result column="EX_LOC" property="ex_loc"/>
+	</resultMap>
+	<select id="selectExhibition" resultMap="userRezMap" parameterType="String">
+		select e.ex_num, e.ex_name from exhibition e, exhibition_loc el where (e.ex_num=el.ex_num(+)) and el.ex_loc=#{ex_loc}
+	</select>
+	
+	<!-- 지역 보여주기 -->
+	<select id="selectLocal" resultMap="userRezMap">
+		select ex_loc from exhibition_loc
+	</select>
+	
+	<!-- 전시 안내 보여주기 -->
+	<select id="selectExInfo" resultType="UserReservationVO" parameterType="int">
+		select e.ex_intro, p.adult, p.teen, p.child from exhibition e, price p where  (e.ex_num=p.ex_num) and e.ex_num=#{ex_num}
+	</select>
+	
+	<!-- 전시 예약하기 -->
+	<insert id="reservation" parameterType="UserReservationVO">
+		insert into reservation(rez_num, rez_count, visit_date, ex_num, userid,rez_status) ")
+			values(res_seq.nextval,#{rez_count},#{visit_date},#{ex_num},#{userid},#{rez_status})
+	</insert>
+</mapper>
